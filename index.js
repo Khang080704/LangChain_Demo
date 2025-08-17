@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const {research, writeToFile} = require('./controller/ai.c')
 
 app.use(express.json());
 
-app.post("/", research);
-app.post("/file", writeToFile)
+app.use('/search', require('./router/search.r'))
+app.use('/file', require('./router/file.r'))
 
 app.listen(3000, () => {
     console.log("server is running");
